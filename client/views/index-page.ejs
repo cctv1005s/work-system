@@ -1,0 +1,125 @@
+  <div class="index-page app-model-myproject" id="index-page" style="z-index:999" data-app>
+      <!--通用头部-->
+      <header data-am-widget="header" class="am-header am-header-default am-header-black" >          
+          <div class="am-header-left am-header-nav">
+              <div class="am-dropdown" data-am-dropdown>
+                <a class="am-dropdown-toggle" data-am-dropdown-toggle> <i class="am-header-icon am-icon-bars"></i> </a>
+                <ul class="am-dropdown-content" >
+                  <li class="all_project"><a href="#all-project" data-role-transition>所有项目</a></li>
+                  <li class="intel_project"><a  href="#">智能推荐</a></li>
+                  <li class="audit_project"><a  href="#">待审核项目</a></li>
+                  <li class="my_project"><a  href="#">我的项目</a></li>
+                </ul>
+              </div>
+          </div>
+
+          <h1 class="am-header-title">
+              <a href="#title-link" class="">
+                <span class="header-title-myproject">我的项目</span>
+                <span class="header-title-sourcecenter">资源中心</span>
+                <span class="header-title-information">个人信息</span>
+              </a>
+          </h1>
+
+          <div class="am-header-right am-header-nav">
+              <a href="#search-box" data-role-transition class="search-btn">
+                    <i class="am-header-icon am-icon-search"></i>
+              </a>
+              <a href="#" class="edit-btn" data-source-new >
+                    <i class="am-header-icon am-icon-edit"></i>
+              </a>
+          </div>
+      </header>
+      
+      <div class="index-page-body">
+      <div class="work-system-slider">
+        <ul class="work-slider-list clearfix">
+          <li class="work-slider-item">
+              <!--选项卡-->
+              <div data-am-widget="tabs" class="am-tabs am-tabs-default">
+                  <ul class="am-tabs-nav am-cf">
+                      <li class="am-active"><a href="[data-tab-panel-0]"><span>全部</span></a></li>
+                      <li class=""><a href="[data-tab-panel-1]"><span>未通过申请</span></a></li>
+                      <li class=""><a href="[data-tab-panel-2]"><span>进行中</span></a></li>
+                      <li class=""><a href="[data-tab-panel-3]"><span>已完成</span></a></li>
+                      <li class=""><a href="[data-tab-panel-4]"><span>退款</span></a></li>
+                  </ul>
+
+                  <div class="am-tabs-bd">
+                      <div data-tab-panel-0 class="am-tab-panel am-active ws-tab-panel" data-am-tabs-noswipe="1">
+                        <div class="all-project">
+                            <div class="project-list" id="all-my-project-list">                                                    
+                            </div>
+                        </div>
+                      </div>
+                      <div data-tab-panel-1 class="am-tab-panel ws-tab-panel">
+                            <div class="project-list" id="all-my-nopass-project-list">                                                    
+                            </div>                
+                      </div>
+                      <div data-tab-panel-2 class="am-tab-panel ws-tab-panel">
+                            <div class="project-list" id="all-my-on-project-list">                                                    
+                            </div>    
+                      </div>
+                      <div data-tab-panel-3 class="am-tab-panel ws-tab-panel">
+                            <div class="project-list" id="all-my-completed-project-list">                                                    
+                            </div>                            
+                      </div>
+                      <div data-tab-panel-4 class="am-tab-panel ws-tab-panel">
+                            <div class="project-list" id="all-my-refund-project-list">                                                    
+                            </div>                       
+                      </div>
+                  </div>
+              </div>
+          </li>
+
+          <li class="work-slider-item">
+            <!--选项卡-->
+            <div data-am-widget="tabs" class="am-tabs am-tabs-default" data-am-tabs-noswipe="1">
+                <ul class="am-tabs-nav am-cf">
+                    <li class="am-active"><a href="[data-tab-panel-0]"><span>所有资源</span></a></li>
+                    <li class=""><a href="[data-tab-panel-1]"><span>星标资源</span></a></li>
+                    <li class="" id="file-manage" data-app-control data-app-model="app-model-newsource"><a href="[data-tab-panel-2]"><span>文件管理</span></a></li>
+                </ul>
+
+                <div class="am-tabs-bd">
+                    <div data-tab-panel-0 class="am-tab-panel am-active ws-tab-panel">
+                      <div class="all-source">
+                      <%- partial('./model/source-list',{source_list_name:'source-list-allsource'})%>
+                      </div>
+                    </div>
+                    <div data-tab-panel-1 class="am-tab-panel ws-tab-panel">
+                      <%- partial('./model/source-list',{source_list_name:'source-list-star'})%>
+                    </div>
+                    <div data-tab-panel-2 class="am-tab-panel ws-tab-panel" data-source-collapse-list>                   
+                    </div>
+                </div>
+            </div>
+
+          </li>
+          <li class="work-slider-item">
+            <%- partial('my-information') %>
+          </li>
+        </ul>
+      </div>
+      </div>
+
+      
+      <div class="footer-menu">
+        <div class="footer-menu-item am-u-sm-4 footer-active" data-work-slider-0 data-app-control data-app-model="app-model-myproject">
+            <a href="#" class="projectcenter">
+                <p>项目中心</p>
+            </a>
+        </div>
+        <div class="footer-menu-item am-u-sm-4" data-work-slider-1 data-app-control data-app-model="app-model-sourcecenter">
+            <a href="#" class="search">
+                <p>资源中心</p>
+            </a>
+        </div>
+        <div class="footer-menu-item am-u-sm-4" data-work-slider-2 data-app-control data-app-model="app-model-information">
+            <a href="#" class="profile">
+                <p>个人信息</p>
+            </a>
+        </div>    
+      </div>
+    
+  </div>

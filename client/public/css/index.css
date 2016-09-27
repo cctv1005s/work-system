@@ -1,0 +1,216 @@
+.left{float: left;}
+.right{float: right;}
+.blackword{color: black;}
+.blueword{color: #1d80fb;}
+.whiteword{color:white;}
+.clearfix{overflow:hidden;_zoom:1;}
+.greyword{color:#a0a0a0; }
+li{list-style: none !important;}
+.greyback{background-color:#a0a0a0;}
+
+#login-page{z-index: 1000;}
+/*jquery 的loading 文字去掉*/
+.ui-loader-default{ display:none}
+.ui-mobile-viewport{ border:none;}
+.ui-page {padding: 0; margin: 0; outline: 0} 
+.index-page{height: 100%;}
+.index-page-body{height: calc(100% - 100px);overflow: auto;}
+.index-page .am-header-black{background:#f9f9f9;}
+.index-page .am-header-black .am-header-title a{color: black;}
+.index-page .am-header-black .am-header-nav a{color: #1d80fb;}
+
+/*待处理*/
+.index-page .source-page .search-btn{display: none;}
+.index-page .source-page .edit-btn{display: none;}
+.index-page .source-edit .edit-btn{display: block !important;}
+.index-page .source-edit .search-btn{display: none;}
+
+.index-page .am-tabs-default{margin: 0;}
+.index-page .am-tabs-default > ul{background: white;font-size: 13px;border-bottom:1px solid #e4e4e4; }
+.index-page .am-tabs-default > ul .am-active a{background: white;color: #7bb9ff;}
+.index-page .am-tabs-default > ul .am-active a span{border-bottom:2px solid #7bb9ff;padding-bottom: 11px; }
+.index-page .am-tabs-default .am-tab-panel{padding: 0;}
+/*修改下拉菜单的消息*/
+.index-page .am-active > .am-dropdown-content{background: #444444;}
+.index-page .am-active > .am-dropdown-content a{color: #d3d3d3;}
+.index-page .am-active > .am-dropdown-content .am-active a{background: #444444;}
+.index-page .am-dropdown-content:after{border-bottom-color: #444444;}
+/*下拉菜单的背景*/
+.am-dropdown-content > li{background-position: 5px center;text-indent: 15px; }
+.all_project{background: url(../img/icon/all_project.gif) no-repeat;}
+.intel_project{background: url(../img/icon/intel_project.gif) no-repeat;}
+.audit_project{background: url(../img/icon/audit_project.gif) no-repeat;}
+.my_project{background: url(../img/icon/my_project.gif) no-repeat;}
+
+.project-item{height: 77px;border-bottom: 1px solid #e4e4e4;overflow: hidden;}
+.project-item-img{margin-top: 10px;}
+.project-item-img img{max-width: 150%;height:57px;width: 57px;border-radius: 7px;}
+.project-item-info{margin-top: 10px;}
+.project-name{color: black;}
+.project-item .project-work{font-size: 12px;color: #cfcfcf;}
+.project-item .project-num{font-size: 10px;color: #cfcfcf;}
+.project-item .project-date{font-size: 10px;color: black;}
+.project-item .project-budget{padding-top: 17px;}
+
+.index-page .am-tabs-default .am-tabs-bd{border:none;}
+
+/*我的项目的底部菜单*/
+.footer-menu{position: fixed;bottom: 0;text-align: center;font-size: 10px;width: 100%;border-top: 1px solid #cfcfcf;background: white;padding-top: 10px;padding-bottom: 7px;z-index: 999;}
+.footer-menu-item a p{margin: 0;color: #cfcfcf;}
+
+.footer-menu .projectcenter{background: url(../img/icon/projectcenter.png) no-repeat;}
+.footer-menu .profile{background: url(../img/icon/profile.png) no-repeat;}
+.footer-menu .search{background: url(../img/icon/search.png) no-repeat;}
+.footer-menu .search,.footer-menu .profile,.footer-menu .projectcenter{background-position: center top;display: block;padding-top: 25px; }
+
+/*项目菜单active效果描述*/
+.footer-menu .footer-active p{color: #6eb2fe;}
+
+.footer-menu .footer-active .projectcenter{background: url(../img/icon/projectcenter_active.png) no-repeat;}
+.footer-menu .footer-active .profile{background: url(../img/icon/profile_active.png) no-repeat;}
+.footer-menu .footer-active .search{background: url(../img/icon/search_active.png) no-repeat;}
+.footer-menu .footer-active .search,.footer-menu .footer-active .profile, .footer-menu .footer-active .projectcenter{background-position: center top;display: block;padding-top: 25px; }
+
+/*项目详情-委托*/
+#project-entrust{overflow: auto;}
+.project-detail {padding: 10px;}
+.project-detail .project-img{width: 82px;}
+.project-detail .project-img img{width: 82px;height: 82px;}
+.project-detail .project-info{padding-left: 10px;font-size: 8px;}
+.project-info .project-name{font-size: 14px;}
+.project-info .project-bonus,.project-deadline{color: #d8d8d8;}
+.project-detail .project-entrust{padding-top: 25px;}
+.project-detail .project-entrust a{border:1px solid #0076ff;padding: 3px 8px 3px 8px;border-radius: 8px;}
+.project-detail-slider{margin-top: 30px;}
+.project-detail-slider li{text-align: center;}
+.project-detail-slider li > img {box-shadow: 0 0 10px grey;}
+
+/*控制申请按钮*/
+.project-apply-btn [data-project-btn-apply]{display: block;}
+.project-apply-btn [data-project-btn-entrust],[data-project-btn-apply]{display: none;}
+.project-pending-btn {display: none}
+
+/*选项卡*/
+.project  .am-tabs-default > ul{border: 1px solid #949494;height: 30px;overflow: hidden;margin: 10px;width: auto;border-radius: 5px;}
+.project  .am-tabs-default > ul > li > a{line-height: 30px;color: #d4d4d4;}
+.project  .am-tabs-default > ul > .am-active > a{background: #a1a1a1;color: white;}
+
+.tab-project-detail{height: 386px;background: #ededed;}
+
+/*员工详情*/
+.staff-p-item{padding: 5px 10px 5px 10px;border-bottom: 1px solid #e4e4e4;}
+.staff-p-item > .staff-p-img > img {height: 85px;width: 85px;}
+    
+.staff-p-names{font-size: 10px;color: #c4c4c4;}
+.staff-p-names > div,.staff-p-content > div{margin-top: 3px;margin-bottom: 3px;}
+.staff-p-info{width: 70%;}
+.staff-p-content{font-size: 10px;color: black;}
+.staff-p-name-c{width: 6em;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;}
+
+
+/*选人界面*/
+.choosePerson{margin-top: 10px;position: relative;}
+.choosePerson-word{font-size: 5px;position: fixed;bottom:0; width:100%;text-align: center;}
+.person-profile{background: url(../img/profile_back.gif) no-repeat;width: 261px;;box-shadow: 0px 0px 10px grey;position: relative;margin: 0 auto !important;}
+.person-profile .profile-sure{display: none;}
+.profile-sure{position: absolute;top: 10px;right: 15px;border-radius: 100%;}
+.profile-head{text-align: center;}
+.profile-score{font-size: 25px;color: white;}
+.profile-img img{height: 50px;width: 50px;border-radius: 100%;}
+.profile-name,.profile-work{font-size: 10px;}
+.profile-work{color: #a0a0a0;}
+.profile-info-item{font-size: 10px;padding: 10px 0 10px 0;margin:0 15px 0 15px; border-bottom: 1px solid #eeeeee;}
+.profile-info-b{color: #a0a0a0;}
+.profile-p{margin: 5px 0 5px 0;}
+/*重写我的资料界面*/
+
+.my-profile .person-profile{width: 100%;height: 100%;background-size: 100%;}
+.my-profile .profile-img img{height: 100%;width: 25%;}
+
+
+/*source-list*/
+.source-list{width: 100%;overflow: hidden;}
+.source-item{width: 200%;position: relative;border-bottom: 1px solid #e5e5e5;transition: 0.3s}
+.source-item-open{transform: translateX(-160px);-ms-transform: translateX(-160px);-moz-transform: translateX(-160px);-webkit-transform: translateX(-160px);-o-transform: translateX(-160px);}
+.source-item-body{padding-top: 12px;padding-bottom: 5px;}
+.source-img{overflow: hidden;}
+.source-img > img{max-height: 70px;max-width: 70px;}
+.source-star{color: transparent;}
+.source-item-star .source-star{color: #d0021b;margin-left: 5px;}
+.source-item-menu{width: 160px;}
+.source-item-menu > div{width: 50%;text-align: center;color: white;line-height: 80px;}
+.source-mark{background: #cccccc;}
+.source-share{background: #4a90e2;}
+.source-name > span{color: black;width: 6em;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;display: block;float: left;}
+.source-rename{background: #cccccc;display: none;}
+.source-delete{background: #d0021b;display: none;}
+.source-syn,.source-filetype{color: #cfcfcf;font-size: 12px;}
+.source-size{color: #cfcfcf;font-size: 10px;}
+.source-date{font-size: 10px;line-height: 15px;}
+.source-syn{padding-top: 13px;}
+
+.source-item-management .source-share,.source-item-management .source-mark{display: none;}
+.source-item-management .source-rename,.source-item-management .source-delete{display: block;}
+
+/*source-collapse*/
+.ws-list-head,.source-collapse-head{padding: 12px;border-bottom: 1px solid #e5e5e5;font-size: 12px;}
+.source-collapse-body{display: none;overflow: hidden;}
+.source-collapse-body .source-item{background: #f9f9f9;}
+.source-collapse-show > .source-collapse-body{display: block;}
+
+
+/*work-system-slider*/
+.work-system-slider{width: 100%;overflow: hidden;height: 100%;}
+.work-system-slider > ul {list-style: none;width: 1000%;padding: 0 !important;transition:0.3s;height: 100%;}
+.work-system-slider > ul > li{float: left;overflow: hidden;background: white;height: inherit;}
+.work-slider-item .am-tabs{height: inherit;}
+.work-slider-item .am-tabs-bd{height: calc(100% - 60px)}
+.work-slider-item .am-tabs-bd > div{height: 100%;}
+
+/*由于jquery mobile和amaze ui 冲突，自己重写过渡过程*/
+body{position: absolute;height: 100%;width: 100%;}
+.app{position: relative;width: 100%;overflow: hidden;height: 100%;}
+div[data-role="page"]{width: 100%;position: absolute;left: 100%;top: 0;height: 100%;z-index: 999;background: white;transition: 0.3s;transform: translateX(0);-o-transform: translateX(0);-webkit-transform: translateX(0);-moz-transform: translateX(0);-ms-transform: translateX(0);overflow: hidden;}
+div[data-role="page"] >div{margin-top:50px;height:calc(100% - 50px);overflow: auto;}
+div[data-role="page"] >header{position: absolute;top: 0;}
+.data-role-show{transform: translateX(-100%) !important;-ms-transform: translateX(0);-o-transform: translateX(0);-webkit-transform: translateX(0);-moz-transform: translateX(0);transition: 0.3s;}
+.page-role-in{transform: translateX(0);-o-transform: translateX(0);-webkit-transform: translateX(0);-moz-transform: translateX(0);-ms-transform: translateX(0);}
+
+
+
+/*登录框*/
+#login-page{overflow: auto;}
+.login-logo{width: 40%;margin: 30px auto 0 auto;max-width: 200px;}
+.login-logo img{width: 100%;}
+.login-input{padding: 20px;}
+#user-login-btn{width: 100%;margin-top: 20px;}
+.login-tips{padding-left: 20px;}
+
+
+/*搜索框*/
+.am-header-white{background: white;}
+.am-header-search .am-header-icon{color: black;}
+.search-input-box{margin: 0 30px !important;}
+#search-input{width: 100%;color: black;border: none;outline: none;}
+#search-input:focus{border-bottom: 2px green;}
+
+.project-list-wrapper{height: 100%;overflow: auto;}
+
+/*修改了由于盒模型带来的标题跟着内容一起动的bug*/
+.ws-tab-panel{overflow: auto;}
+
+
+/*app model 的各个不同的状态*/
+
+.edit-btn,.search-btn,.header-title-information,.header-title-sourcecenter,.header-title-myproject{display: none !important;}
+.app-model-myproject .header-title-myproject,.app-model-myproject .search-btn{display: block !important;}
+.app-model-sourcecenter .header-title-sourcecenter{display: block !important;}
+.app-model-newsource .edit-btn,.app-model-newsource .header-title-sourcecenter{display: block !important;}
+.app-model-information .header-title-information{display: block !important;}
+
+.logout-btn{text-align: center;color:#d0021b;font-size: 1em;width: 100%;display: block;height: 40px;line-height: 40px;background-color: #fafafa;}
+.logout-btn :hover{color: black;}
+
+/*个人资料*/
+#my-profile-page >div{margin: 0;}
+#my-profile-page .person-profile{box-shadow: none;}

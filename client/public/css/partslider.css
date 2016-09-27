@@ -1,0 +1,5 @@
+.partslider {width: 100%;overflow: hidden;}
+.partslider > ul{list-style: none;width: 1000%;transition: 0.3s;padding: 0;transform: translateX(0);}
+.partslider > ul > li{float: left;transform: scale(0.9);transition: 0.3s;overflow: hidden; }
+
+.partslider .slider-active{transform: scale(1);}

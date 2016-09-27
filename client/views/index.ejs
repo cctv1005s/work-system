@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="./css/amazeui.css">
+    <link rel="stylesheet" type="text/css" href="./css/index.css">
+    <link rel="stylesheet" type="text/css" href="./css/partslider.css">
+    <title>工作系统</title>
+</head>
+<body> 
+  
+  <div class="app">
+  <% if(!login){ %>
+  <%- partial('login.ejs')%>
+  <%}%>
+  <%- partial('index-page.ejs')%>
+  <%- partial('project-entrust.ejs')%>
+  <%- partial('project-pick.ejs') %>
+  <%- partial('search-box.ejs')%>
+  <%- partial('all-project')%>
+  <%- partial('my-profile') %>
+
+  <%- partial('./model/alert.ejs') %>
+  </div>
+
+    <script src="./js/eventproxy.js"></script>
+    <script src="http://apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="./js/jquery.mobile-1.4.5.min.js"></script>
+    <script type="text/javascript" src="http://cdn.amazeui.org/amazeui/2.7.2/js/amazeui.min.js"></script>
+    <script type="text/javascript" src="./js/md5.js"></script>
+    <script type="text/javascript" src="./js/partslider.js"></script>
+    <script type="text/javascript" src="./js/work-system.js"></script>
+    <script type="text/javascript" src="./js/work-system-index.js"></script>
+ 
+</body>
+</html>
