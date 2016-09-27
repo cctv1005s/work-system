@@ -1,6 +1,6 @@
 .left{float: left;}
 .right{float: right;}
-.blackword{color: black;}
+.blackword{color: black !important;}
 .blueword{color: #1d80fb;}
 .whiteword{color:white;}
 .clearfix{overflow:hidden;_zoom:1;}
