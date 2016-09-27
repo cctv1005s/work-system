@@ -112,7 +112,6 @@ li{list-style: none !important;}
 .choosePerson{margin-top: 10px;position: relative;}
 .choosePerson-word{font-size: 5px;position: fixed;bottom:0; width:100%;text-align: center;}
 .person-profile{background: url(../img/profile_back.gif) no-repeat;width: 261px;;box-shadow: 0px 0px 10px grey;position: relative;margin: 0 auto !important;}
-.person-profile .profile-sure{display: none;}
 .profile-sure{position: absolute;top: 10px;right: 15px;border-radius: 100%;}
 .profile-head{text-align: center;}
 .profile-score{font-size: 25px;color: white;}

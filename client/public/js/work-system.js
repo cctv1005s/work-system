@@ -893,7 +893,7 @@ _add(PP,function(){
    var html = '<li>'+           
                 '<div class="person-profile clearfix" data-profile-userid-'+UserID+'>'+            
                   
-                  '<div class="profile-sure greyback" data-project-sure data-project-index="'+index+'">'+
+                  '<div class="profile-sure blackword" data-project-sure data-project-index="'+index+'">'+
                        '<i class="am-icon-check-circle-o whiteword">'+'</i>'+
                   '</div>'+  
 
@@ -993,7 +993,7 @@ _add(PPP,function(){
 		//绑定选择人数
 		$container.on('click',PPP.btn.sure, function(e) {
 			var $elem = $(e.currentTarget);
-			$elem.toggleClass('greyback');
+			$elem.find('i').toggleClass('blackword');
 			var index = $elem.attr('data-project-index');
 			for(var i = 0;i < sureList.length;i++){
 				if(sureList[i] == index){
