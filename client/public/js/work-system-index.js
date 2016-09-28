@@ -73,12 +73,10 @@ var InitUIComponet = function(){
     //资源列表
     var s1 = new sourceList('.source-list-allsource');
     var s2 = new sourceList('.source-list-star',{star:true});
-    var s3 = new sourceList('.demand-source-list');
     //每一个资源列表的更新
     sourceList.updateFn = function(){
         s1.render();
         s2.render();
-        s3.render();
     }
 
     //资源项的数据获取
@@ -97,11 +95,12 @@ var InitUIComponet = function(){
                 var x = new sourceItem(sList[i]);
                 s1.addSource(x);            
                 s2.addSource(x);
-                s3.addSource(x);
             }
         }
     });
-    
+
+
+
 
     //搜索选项
     $('#search-input').on('input',function(e) {
@@ -248,6 +247,14 @@ var initMyProject = function(newItem){
     var e = newItem.option;
     if(!(e.Status >= 0))
         return ;
+
+    $.ajax({
+        url:'/projectExplorer',
+        type:'Post',
+        data:{ReqID:newItem.option.ReqID},
+        success:function(data){
+        }
+    })
     
     p1.addProject(newItem);
     switch(e.ProjectStatus){
@@ -266,7 +273,6 @@ var initMyProject = function(newItem){
 } 
 
 var mergeProject = function(p1,p2){
-    console.log(p1,p2);
     for(var i = 0;i < p1.length;i++)
         for(var j = 0;j < p2.length;j++){
             if(p1[i].id == p2[j].UWSProjectID){
@@ -318,7 +324,6 @@ var getMyProfile = function(){
                 Stability:content.Stability,
                 NickName:content.NickName
             };
-            console.log(profile);
             var pp = new projectProfile(profile);
             $('#my-profile').html(pp.render());
         }

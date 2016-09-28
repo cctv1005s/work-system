@@ -1038,7 +1038,6 @@ _add(PPP,function(){
 		});
 	}
 
-
 	PPP.fn.judge = function(ai,cb){
 		var UserID = ai.UserID;
 		var UWSProjectID = this.option.option.UWSProjectID;
@@ -1141,8 +1140,6 @@ _add(SC,function(){
 		
 		var html = this.getHtml(title,body,SC.ui.wrapper)
 		
-		console.log(html);
-
 		this.$container.append(html);
 	}
 
