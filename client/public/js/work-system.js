@@ -872,6 +872,12 @@ _add(PP,function(){
 		});
 	}
 
+	PP.fn.getUserHead = function(cb){
+		var option = this.option,
+		img = option.MainImage;
+		getThumbUrl(img,cb);
+	}
+
 	PP.fn.render = function(){
 		var option = this.option,
 			score = option.Score,

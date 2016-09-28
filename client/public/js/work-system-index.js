@@ -318,14 +318,20 @@ var getMyProfile = function(){
             var profile = {
                 Score:content.Skill.Score,
                 UserID:content.UserID,
-                img:content.PhotoName,
+                MainImage:content.PhotoName,
                 SkillList:content.Skill.SkillList,
                 Attendance:content.Skill.Attendance,
                 Stability:content.Stability,
                 NickName:content.NickName
             };
+            var $container = $('#my-profile');
             var pp = new projectProfile(profile);
-            $('#my-profile').html(pp.render());
+            $container.html(pp.render());
+            pp.getUserHead(function(err,url){
+                wsalert('asasd')
+                if(err){wsalert(err);}
+                $container.find('[data-profile-img]').attr('src',url);
+            })
         }
     });
 }
