@@ -1083,12 +1083,16 @@ _add(PPP,function(){
 		//绑定提交选人
 		$container.on('click',PPP.btn.check, function(e){
 			//封装数据
+			e.preventDefault();
+			if(self.sureList.length == 0)
+				return ;
 			var staffList = [];
 			for(var i = 0;i < sureList.length;i++){
 				if(sureList[i] == -1)
 					continue;
 				staffList.push(ApplyList[sureList[i]]);
 			}
+			
 			var postData = {
 				"UWSProjectID":option.UWSProjectID,
 				"ProStaffList":staffList,

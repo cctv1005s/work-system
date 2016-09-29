@@ -134,9 +134,8 @@ var InitUIComponet = function(){
                         }
                     break;
                     case 6:
-                        for(var f = s[i].FileList , j = 0;j < f.length;j++){
-                            console.log(f[j]);
-                            s6.addSource(new sourceItem(f[j]));
+                        for(var f = s[i].FileList , j = 0;j < f.length;j++){                        
+                            s6.addSource(new sourceItem(f[j]));                            
                         }
                     break;
                 }
