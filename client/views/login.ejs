@@ -11,18 +11,25 @@
     <div class="login-input">
       <div class="am-input-group">
         <span class="am-input-group-label"><i class="am-icon-user am-icon-fw"></i></span>
-        <input type="text" class="am-form-field" placeholder="账号" id="user-username">
+        <input type="text" class="am-form-field" placeholder="账号" id="user-username" maxlength="30">
       </div>
       <div class="am-input-group">
         <span class="am-input-group-label"><i class="am-icon-lock am-icon-fw"></i></span>
-        <input type="password" class="am-form-field" placeholder="密码" id="user-password">
+        <input type="password" class="am-form-field" placeholder="密码" id="user-password" maxlength="30">
       </div>    
       <button type="button" class="am-btn am-btn-success" id="user-login-btn" >登录</button>
     </div>
     <div class="login-tips">
       <div class="login-forget left">
+        <div class="left"><input id="savecheck" type="checkbox" checked="true"></input></div><p class="right" style="margin:0">保存登录状态</p>
+      </div>
+    </div>
+    
+    <div class="login-tips">
+      <div class="login-forget right">
         <a href="#">忘记密码？</a>
       </div>
     </div>
+
   </div>
   </div>

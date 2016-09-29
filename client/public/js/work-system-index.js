@@ -2,6 +2,7 @@
 //暂时用的TokenID
 var TokenID = "";
 var User = {};
+var savecheck = false;
 
 $(function(){
     //初始化其他组件
@@ -197,7 +198,7 @@ var loginProcess = function(cb){
     var lprocess = function(){
         var username = $('#user-username').val();
         var password = $('#user-password').val();
-        
+        savecheck =  document.getElementById("savecheck").checked;
         if(username.length == 0 || password.length == 0 )
             wsalert('账号或者密码不能为空');
         $.ajax({
@@ -239,11 +240,14 @@ var loginProcess = function(cb){
 }
 
 var postUser = function(){
-    $.ajax({
-        url:'/postUser',
-        type:'post',
-        data:{User:JSON.stringify(User)}
-    });
+    if(savecheck){
+        $.ajax({
+            url:'/postUser',
+            type:'post',
+            data:{User:JSON.stringify(User)}
+        });        
+    }
+
 }
 
 var getUser = function(cb){
