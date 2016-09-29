@@ -357,7 +357,12 @@ var getMyProfile = function(){
                 SkillList:content.Skill.SkillList,
                 Attendance:content.Skill.Attendance,
                 Stability:content.Stability,
-                NickName:content.NickName
+                NickName:content.NickName,
+                EvaluationOfDirector:content.EvaluationOfDirector,
+                ExploringAbility:content.ExploringAbility,
+                CooperationAbility:content.CooperationAbility,
+                CountOfCompletedProjects:content.CountOfCompletedProjects,
+                profile:wrapProfile(content)
             };
             var $container = $('#my-profile');
             var pp = new projectProfile(profile);
@@ -369,3 +374,34 @@ var getMyProfile = function(){
         }
     });
 }
+
+var wrapProfile = function(c){
+    var pf = {};
+    
+    if(!c.Sex || !c.Account ){
+        return undefined;    
+    }
+
+    pf.Sex = c.Sex,
+    pf.Account = c.Account,
+    pf.FirstName = c.FirstName,
+    pf.LastName = c.LastName;
+
+    var contact = JSON.parse(c.Contact);
+    pf.Email = contact.Email,
+    pf.ContactList = contact.ContactList;
+    return pf;
+}
+
+
+//留一个监听，以后在处理
+$('.logout-btn').click(function(event) {
+    $.ajax({
+        url:'/logout',
+        type:'post',
+        success:function(){
+            location.reload();
+        }
+    });
+});
+

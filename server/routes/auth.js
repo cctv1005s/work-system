@@ -35,11 +35,10 @@ exports.postUser = function(req,res,next){
 exports.getUser = function(req,res,next){
     if(req.session.user)
     return res.json(req.session.user);
-    
     res.json('nodata');
 }
 
 exports.logout = function(req,res,next){
     req.session.user = null;
-    res.redirect('/');
+    res.json('logout');
 }

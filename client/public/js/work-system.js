@@ -883,6 +883,7 @@ _add(PP,function(){
 		getThumbUrl(img,cb);
 	}
 
+
 	PP.fn.render = function(){
 		var option = this.option,
 			score = option.Score,
@@ -891,8 +892,13 @@ _add(PP,function(){
 			name = option.NickName||"姓名",
 			skillList = option.SkillList||[],
 			Attendance = option.Attendance,
-			Stability = option.Stability,
-			index = option.index;
+			Stability = parseInt(option.Stability),
+			index = option.index,
+			eofd = parseInt(option.EvaluationOfDirector||0),
+			ea = parseInt(option.ExploringAbility||0),
+			ca = parseInt(option.CooperationAbility||0),
+			ccp = parseInt(option.CountOfCompletedProjects||skillList.length),
+			information = option.profile;
 
 		var skillHtml = "";
 		var skillScoreHtml = "";
@@ -900,6 +906,7 @@ _add(PP,function(){
 			skillHtml +=   '<div class="profile-info-n">'+skillList[i]+':</div>';
 			skillScoreHtml += getStar(0);
 		}
+
 		
    var html = '<li>'+           
                 '<div class="person-profile clearfix" data-profile-userid-'+UserID+'>'+            
@@ -917,7 +924,7 @@ _add(PP,function(){
                     '</div>'+
                     '<div class="profile-name" data-profile-name>'+name+'</div>'+
                   '</div>'+
-                  
+                  getInformation(information) +
                   '<div class="profile-info">'+              
                     '<div class="profile-info-item clearfix">'+
                       '<div class="profile" data-profile-skill>'+'技能'+'</div>'+
@@ -930,23 +937,30 @@ _add(PP,function(){
                       '</div>'+
 
                     '</div>'+
+                    
                     '<div class="profile-info-item clearfix">'+
                       '<div class="profile">'+'素质'+'</div>'+
                       '<div class="profile-info-b left">'+
-                        '<div class="profile-info-n">'+'稳定性：'+'</div>'+              
+                        '<div class="profile-info-n">'+'稳定性：'+'</div>'+
+                        '<div class="profile-info-n">'+'协作能力：'+'</div>'+
+                        '<div class="profile-info-n">'+'项目经理评价：'+'</div>'+        		
+                        '<div class="profile-info-n">'+'探索能力：'+'</div>'+
                         '<div class="profile-info-n">'+'完成项目数量：'+'</div>'+              
                         '<div class="profile-info-n">'+'考勤：'+'</div>'+              
                       '</div>'+                
                       '<div class="profile-info-a right">'+
                       			getStar(Stability)+
+                      			getStar(ca)+
+                      			getStar(eofd)+
+                      			getStar(ea)+
                           '<div class="profile-info-c">'+
-                              skillList.length + '个项目'+
+                              ccp + '个项目'+
                           '</div>'+
                           '<div class="profile-info-c">'+
                              Attendance+
                           '</div>'+
                       '</div>'+
-                    '</div>'+    
+                    '</div>'+                        
                     '<!--项目-->'+
                     '<div class="profile-info-item clearfix">'+
                       '<div class="profile-title">'+'项目'+'</div>'+
@@ -975,11 +989,62 @@ _add(PP,function(){
                             '</div>'+
                           '</div>'+
                         '</div>'+
-                        
+                    
                     '</div>'+
                   '</div>'+
                 '</div>'+
               '</li>'
+        return html;
+	}
+
+	var getInformation = function(pf){
+		if(!pf){
+			return "";
+		}
+
+		var ac = pf.Account,
+			sex = pf.Sex,
+			em = pf.Email,
+			fn = pf.FirstName,
+			ln = pf.LastName;
+			cl = pf.ContactList;
+
+	var getInfo_n = function(str){
+		return '<div class="profile-info-n">'+str+'</div>';
+	}
+
+	var getInfo_l = function(str){
+		return '<div class="profile-info-c">'+str+'</div>';
+	}
+
+	var html = '<div class="profile-info-item clearfix">'+
+                      '<div class="profile">'+'个人资料'+'</div>'+                      
+                      '<div class="profile-info-b left">'+
+                      
+                        getInfo_n('账号:')+getInfo_n('姓:')+getInfo_n('名:')+getInfo_n('性别:')+           
+                      '</div>'+                
+                      '<div class="profile-info-a right">'+
+                        getInfo_l(ac)+getInfo_l(fn)+getInfo_l(ln)+getInfo_l(sex)+
+                      '</div>'+
+                '</div>'; 
+        var clHtml = "";
+        var ciHtml = "";
+        console.log(cl);
+        for(var i = 0;i < cl.length;i++){
+        	clHtml +=getInfo_n(cl[i].Key);
+        	ciHtml +=getInfo_l(cl[i].Value);
+        }
+
+  	    html += '<div class="profile-info-item clearfix">'+
+                      '<div class="profile">'+'联系方式'+'</div>'+                      
+                      '<div class="profile-info-b left">'+
+                        getInfo_n('Email:')+clHtml+
+                      '</div>'+                
+                      '<div class="profile-info-a right">'+
+                          getInfo_l(em)+ciHtml+        
+                      '</div>'+
+                '</div>';
+
         return html;
 	}
 

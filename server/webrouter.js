@@ -25,7 +25,7 @@ router.get('/', function(req, res, next){
 
 
 router.post('/login',auth.postLogin);/*登录*/
-router.get('/logout',auth.logout);
+router.post('/logout',auth.logout);
 router.post('/postUser',auth.postUser);/*保存session*/
 router.get('/getUser',auth.getUser);
 
