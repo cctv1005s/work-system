@@ -26,12 +26,10 @@ exports.projectRelate = function(req,res,next){
 
 exports.projectExplorer = function(req,res,next){
     var postData = req.body;
-    var ReqID = postData.ReqID;
-    var query = util.format('%s?$filter=ReqID eq \'%s\'',config['UWSProjectExplorer'],ReqID);
+    var ReqID = postData.UserID;
+    var query = util.format('%s?$filter=UserID eq \'%s\'',config['UWSProjectExplorer'],ReqID);
     request(query,function(err,data,body){
-        var backInfo = JSON.parse(body); 
-           backInfo = backInfo['value'];
-        res.json(backInfo); 
+        res.json(body);
     });
 }
 

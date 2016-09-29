@@ -94,7 +94,48 @@
                     <div data-tab-panel-1 class="am-tab-panel ws-tab-panel">
                       <%- partial('./model/source-list',{source_list_name:'source-list-star'})%>
                     </div>
-                    <div data-tab-panel-2 class="am-tab-panel ws-tab-panel" data-source-collapse-list>                   
+                    <div data-tab-panel-2 class="am-tab-panel ws-tab-panel" data-source-collapse-list>    
+                        <div class="source-collapse" id="source-collapse-1">
+                            <div class="source-collapse-head clearfix">
+                              <div class="source-collapse-title left">需求项</div>
+                              <div class="source-uncollaps right"><i class="am-icon-chevron-down"></i></div>
+                            </div>
+                            <div class="source-collapse-body">
+                              <%- partial('./model/source-list',{source_list_name:'demand-source-list source-item-management'}) %>      
+                            </div>
+                        </div>
+  
+                        <div class="source-collapse" id="source-collapse-1">
+                            <div class="source-collapse-head clearfix">
+                              <div class="source-collapse-title left">评估</div>
+                              <div class="source-uncollaps right"><i class="am-icon-chevron-down"></i></div>
+                            </div>
+                            <div class="source-collapse-body">
+                              <%- partial('./model/source-list',{source_list_name:'val-source-list source-item-management'}) %>      
+                            </div>
+                        </div>
+
+                        <div class="source-collapse" id="source-collapse-1">
+                            <div class="source-collapse-head clearfix">
+                              <div class="source-collapse-title left">工作流</div>
+                              <div class="source-uncollaps right"><i class="am-icon-chevron-down"></i></div>
+                            </div>
+                            <div class="source-collapse-body">
+                              <%- partial('./model/source-list',{source_list_name:'workflow-source-list source-item-management'}) %>      
+                            </div>
+                        </div>
+
+                        <div class="source-collapse" id="source-collapse-1">
+                            <div class="source-collapse-head clearfix">
+                              <div class="source-collapse-title left">信息</div>
+                              <div class="source-uncollaps right"><i class="am-icon-chevron-down"></i></div>
+                            </div>
+                            <div class="source-collapse-body">
+                              <%- partial('./model/source-list',{source_list_name:'info-source-list source-item-management'}) %>      
+                            </div>
+                        </div>
+
+
                     </div>
                 </div>
             </div>

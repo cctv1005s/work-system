@@ -352,9 +352,14 @@ _add(SL,function(){
 	}
 
 	SL.fn.addSource = function(s){
-		this.sourceList.push(s);
-		this.render();
-		this.eventBind();
+		var self = this;
+		console.log(s.option);
+		getThumbUrl(s.option.GUIDName,function(err,url){
+			s.option.img = url;
+			self.sourceList.push(s);
+			self.render();
+			self.eventBind();
+		});		
 	}
 
 	SL.fn.sourceMark = function(id,mark){

@@ -73,6 +73,11 @@ var InitUIComponet = function(){
     //资源列表
     var s1 = new sourceList('.source-list-allsource');
     var s2 = new sourceList('.source-list-star',{star:true});
+    var s3 = new sourceList('.demand-source-list');
+    var s4 = new sourceList('.val-source-list');
+    var s5 = new sourceList('.workflow-source-list');
+    var s6 = new sourceList('.info-source-list');
+    
     //每一个资源列表的更新
     sourceList.updateFn = function(){
         s1.render();
@@ -100,7 +105,44 @@ var InitUIComponet = function(){
     });
 
 
-
+    //资源项的数据获取
+    $.ajax({
+        url:'/projectExplorer',
+        type:'post',
+        data:{
+            "UserID": User.userInfo.UserID
+        },
+        success:function(data){
+            /*暂时代码*/
+            var data = JSON.parse(data);
+            var sList = data["value"];
+            for(var s = sList,i = 0;i < s.length;i++){
+                switch(s[i].ReqTag){
+                    case 0:
+                        for(var f = s[i].FileList , j = 0;j < f.length;j++){
+                            s3.addSource(new sourceItem(f[j]));
+                        }    
+                    break;
+                    case 5:
+                        for(var f = s[i].FileList , j = 0;j < f.length;j++){
+                            s4.addSource(new sourceItem(f[j]));
+                        }
+                    break;
+                    case 3:
+                        for(var f = s[i].FileList , j = 0;j < f.length;j++){
+                            s5.addSource(new sourceItem(f[j]));
+                        }
+                    break;
+                    case 6:
+                        for(var f = s[i].FileList , j = 0;j < f.length;j++){
+                            console.log(f[j]);
+                            s6.addSource(new sourceItem(f[j]));
+                        }
+                    break;
+                }
+            }
+        }
+    });
 
     //搜索选项
     $('#search-input').on('input',function(e) {
@@ -290,16 +332,9 @@ var initProject = function(ap){
         apl.push(new projectItem(ap[i]));
    }
 
-    var $container = $('[data-source-collapse-list]');
-    for(var i = 0;i < ap.length;i++){
-        $container.append('<div class="source-collapse-list-'+i+' source-item-management"></div>');
-    }
-
    for(var i = 0;i < apl.length;i++){
         allp.addProject(apl[i]);
         initMyProject(apl[i]);
-        new sourceCollapse('.source-collapse-list-'+i,apl[i].option);    
-        
    }
 }
 
@@ -328,7 +363,6 @@ var getMyProfile = function(){
             var pp = new projectProfile(profile);
             $container.html(pp.render());
             pp.getUserHead(function(err,url){
-                wsalert('asasd')
                 if(err){wsalert(err);}
                 $container.find('[data-profile-img]').attr('src',url);
             })
