@@ -353,11 +353,10 @@ _add(SL,function(){
 
 	SL.fn.addSource = function(s){
 		var self = this;
-		console.log(s.option);
 		getThumbUrl(s.option.GUIDName,function(err,url){
 			s.option.img = url;
 			self.sourceList.push(s);
-			self.render();
+			self.$container.append(s.render());
 			self.eventBind();
 		});		
 	}
@@ -575,7 +574,6 @@ _add(PL,function(){
 			var id = e.option.id;
 			$container.on('click','[data-project-id-'+id+']', function(event) {
 				//对跳转的界面进行修改
-				console.log(e);
 				new projectEntrust('#project-entrust',e);
 				new PPP('#project-pick',e); 
 			});
@@ -601,7 +599,7 @@ _add(PL,function(){
 	PL.fn.addProject = function(elem){
 		this.projectList.push(elem);
 		this.eventBind();
-		this.render();
+		this.$container.append(elem.render());
 	};
 
 	PL.fn.findProject = function(findTitle){
@@ -648,7 +646,6 @@ _add(PE,function(){
 
 	PE.fn.initRender = function(){
 		var pi = this.pi.option;
-		console.log(pi);
 		var FileList = pi.ImgList;
 		var html = "";
 		for(var i = 0;i < FileList.length;i++){
@@ -660,6 +657,9 @@ _add(PE,function(){
 	PE.fn.applyProcess = function(){
 		var pi = this.pi.option;
 		var self = this;
+		var status = pi.Status;
+		var $container = this.$container;
+
 		//如果不是自己的项目，那么就提交申请。
 		var data = {
 			"UWSProjectID":pi.id,
@@ -673,7 +673,8 @@ _add(PE,function(){
 			"CountOfPerson":pi.CountOfPerson,
 			"TokenID":TokenID
 		}
-		if(!status){
+
+
 			//提交申请
 			$.ajax({
 				url:'/projectApply',
@@ -693,10 +694,10 @@ _add(PE,function(){
 					var content = JSON.parse(postData.Content);
 					var itemContent = JSON.parse(content.ItemContent);
 					pi = itemContent;
-					self.init();
+					$container.find('[data-project-btn-apply]').hide();
 				}
 			});
-		}
+
 	}
 
 	PE.fn.eventBind = function(){
@@ -706,7 +707,7 @@ _add(PE,function(){
 		PE.on = true;
 		var self = this;
 
-		$container.on('click','[project-apply-btn]',function(e){
+		$container.on('click','[data-project-btn-apply]',function(e){
 			self.applyProcess();
 		});
 	}
@@ -802,7 +803,11 @@ _add(PE,function(){
 			getUserByUserID(e.UserID,function(err,data){
 				var UserInfo = JSON.parse(data.Content);
 				$.extend(e,UserInfo);
-				$container.find(PE.ui.comment).append(GetComment(e));
+				getThumbUrl(e.PhotoName,function(err,url){
+					e.PhotoName = url;
+					$container.find(PE.ui.comment).append(GetComment(e));
+				})
+				
 			});
 		});			
 	}
@@ -962,7 +967,7 @@ _add(PP,function(){
                       '</div>'+
                     '</div>'+                        
                     '<!--项目-->'+
-                    '<div class="profile-info-item clearfix">'+
+                    '<div class="profile-info-item clearfix profile-p-info-project">'+
                       '<div class="profile-title">'+'项目'+'</div>'+
                         
                         '<div class="profile-p clearfix">'+
@@ -970,7 +975,7 @@ _add(PP,function(){
                             '<img src="./img/project_1.gif">'+
                           '</div>'+
                           
-                          '<div class="profile-p-info right">'+
+                          '<div class="profile-p-info right ">'+
                             '<div class="profile-p-info-b greyword left">'+
                               '<div class="profile-p-item">'+'项目名称：'+'</div>'+
                               '<div class="profile-p-item">'+'项目所需技能：'+'</div>'+
@@ -1029,7 +1034,6 @@ _add(PP,function(){
                 '</div>'; 
         var clHtml = "";
         var ciHtml = "";
-        console.log(cl);
         for(var i = 0;i < cl.length;i++){
         	clHtml +=getInfo_n(cl[i].Key);
         	ciHtml +=getInfo_l(cl[i].Value);
@@ -1086,6 +1090,7 @@ _add(PPP,function(){
 			e.preventDefault();
 			if(self.sureList.length == 0)
 				return ;
+
 			var staffList = [];
 			for(var i = 0;i < sureList.length;i++){
 				if(sureList[i] == -1)
@@ -1134,12 +1139,13 @@ _add(PPP,function(){
 	PPP.fn.render = function(){
 		var option = this.option.option,
 			title = option.Title,
-			count = option.CountOfPerson;
+			count = 0;
 		var staffList = option.ProStaffList;
 
 		var $container = this.$container;
 		$container.find(PPP.ui.title).html(title);
-		$container.find(PPP.ui.count).html(count);
+		$container.find(PPP.ui.count).html("0");
+		
 		var html = "";
 		
 		var ep = new EventProxy();
@@ -1149,7 +1155,6 @@ _add(PPP,function(){
 			//塞入index
 			ApplyItem.index = i;
 			this.judge(ApplyItem,function(judge){
-				console.log(ApplyItem);
 				if(judge == false){
 					var pp = new PP(ApplyItem);
 					html+=pp.render();
@@ -1165,6 +1170,8 @@ _add(PPP,function(){
 						$name.html(name),
 						$img.attr('src',photo);
 					});
+					count++;
+					$container.find(PPP.ui.count).html(count);
 				}
 				else{
 					ep.emit('pp_render',"");
@@ -1177,6 +1184,7 @@ _add(PPP,function(){
 			$container.find(PPP.ui.pick).html(html);	
 			pickSlider = new partslider('.partslider-pick');
 			pickSlider.create();
+			//请求的人数
 		});	
 	} 
 
@@ -1194,33 +1202,45 @@ _add(SC,function(){
 
 	SC.fn.init = function(){
 		this.render();
+		this.renderFiles();
 		this.eventBind();
 	}
 
-	var getS = function(data){
-		return '['+data+']';
+	SC.fn.eventBind = function(){
 	}
 
-	SC.fn.eventBind = function(){
-		var $container = this.$container;
-		var self = this;
-		//对本项的所有的进行打开
-		$container.on('click','.source-collapse-head', function(e){			
-			$(e.currentTarget).parent().toggleClass('source-collapse-show');
-			self.renderFileList();
-		});
-
+	SC.fn.renderFiles = function(){
+		var o = this.option;
+		for(var i = 0 ;i < o.length;i++){
+			var sl = new sourceList("[data-source-id=\""+o[i].id+"\"]");
+			for(var j = 0,f = o[i].FileList;j < o[i].FileList.length;j++){
+				sl.addSource(new sourceItem(f[j]));
+			}
+		}
 	}
 
 	SC.fn.render = function(){
-		var option = this.option,
-			title = option.Title;
-		var body = this.getHtml('需求项',"",SC.ui.demand)+this.getHtml('评估',"",SC.ui.val)
-				   +this.getHtml('工作流',"",SC.ui.workflow)+this.getHtml('信息',"",SC.ui.info);
-		
-		var html = this.getHtml(title,body,SC.ui.wrapper)
-		
-		this.$container.append(html);
+		var option = this.option;
+		var demand = "",val = "",workflow = "",info = "";
+		for(var i = 0,o = option;i < option.length;i++){	
+			switch(o[i].ReqTag){
+				case 0:
+					demand += this.getHtml(o[i].ReqName,"<div class=\"source-list\" data-source-id=\""+o[i].id+"\">asd</div>","");
+				break;
+				case 5:
+					val += this.getHtml(o[i].ReqName,"<div class=\"source-list\" data-source-id=\""+o[i].id+"\">asd</div>","");
+				break;
+				case 3:
+					workflow += this.getHtml(o[i].ReqName,"<div class=\"source-list\" data-source-id=\""+o[i].id+"\">asd</div>","");
+				break;
+				case 6:
+					info += this.getHtml(o[i].ReqName,"<div class=\"source-list\" data-source-id=\""+o[i].id+"\">asd</div>","");
+				break;
+			}
+		}
+		var body = this.getHtml('需求项',demand,SC.ui.demand)+this.getHtml('评估',val,SC.ui.val)
+				   +this.getHtml('工作流',workflow,SC.ui.workflow)+this.getHtml('信息',info,SC.ui.info);
+		this.$container.html(body);
 	}
 
 	SC.fn.getHtml = function(title,body,data_id){
@@ -1234,51 +1254,6 @@ _add(SC,function(){
                           '</div>'+                          
                       '</div>';
         return html;
-	}
-
-	SC.fn.renderFileList = function(){
-		var self = this;
-		var option = this.option,
-			ReqID = option.ReqID;
-		$.ajax({
-			url:'projectExplorer',
-			type:'Post',
-			data:{
-				TokenID:TokenID,
-				ReqID:ReqID
-			},
-			success:function(data){
-				var demand = [],val = [],workflow = [],info = [];
-				for(var i = 0;i < data.length;i++){
-					switch(data[i].ReqTag){
-						case 0://需求项目
-							for(var j = 0;j < data[i].FileList.length;j++){
-								demand.push(data[i].FileList[j]);
-							}
-						break;
-						case 5://评估
-							for(var j = 0;j < data[i].FileList.length;j++){
-								val.push(data[i].FileList[j]);
-							}
-						break; 
-						case 3://工作流
-							for(var j = 0;j < data[i].FileList.length;j++){
-								workflow.push(data[i].FileList[j]);
-							}
-						break;
-						case 6://信息
-							for(var j = 0;j < data[i].FileList.length;j++){
-								info.push(data[i].FileList[j]);
-							}
-						break;
-					}
-				}
-				self.renderSource(demand,SC.ui.demand);
-				self.renderSource(val,SC.ui.val);
-				self.renderSource(workflow,SC.ui.workflow);
-				self.renderSource(info,SC.ui.info);	
-			}
-		});
 	}
 
 

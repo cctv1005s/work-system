@@ -78,6 +78,7 @@ var InitUIComponet = function(){
     var s5 = new sourceList('.workflow-source-list');
     var s6 = new sourceList('.info-source-list');
     
+
     //每一个资源列表的更新
     sourceList.updateFn = function(){
         s1.render();
@@ -116,30 +117,7 @@ var InitUIComponet = function(){
             /*暂时代码*/
             var data = JSON.parse(data);
             var sList = data["value"];
-            for(var s = sList,i = 0;i < s.length;i++){
-                switch(s[i].ReqTag){
-                    case 0:
-                        for(var f = s[i].FileList , j = 0;j < f.length;j++){
-                            s3.addSource(new sourceItem(f[j]));
-                        }    
-                    break;
-                    case 5:
-                        for(var f = s[i].FileList , j = 0;j < f.length;j++){
-                            s4.addSource(new sourceItem(f[j]));
-                        }
-                    break;
-                    case 3:
-                        for(var f = s[i].FileList , j = 0;j < f.length;j++){
-                            s5.addSource(new sourceItem(f[j]));
-                        }
-                    break;
-                    case 6:
-                        for(var f = s[i].FileList , j = 0;j < f.length;j++){                        
-                            s6.addSource(new sourceItem(f[j]));                            
-                        }
-                    break;
-                }
-            }
+            new sourceCollapse('[data-source-collapse-list]',sList);
         }
     });
 
@@ -162,8 +140,10 @@ var InitUIComponet = function(){
 
 var InitOtherUI = function(){
     //一些没有封装的组件动作
-    $('.source-collapse-head').click(function(event){
-        $(this).parent().toggleClass('source-collapse-show');
+    
+    $('.app').on('click', '.source-collapse-head', function(e) {
+        event.preventDefault();
+        $(e.currentTarget).parent().toggleClass('source-collapse-show');
     });
 
     $('.footer-menu-item').click(function(e){
@@ -231,7 +211,6 @@ var loginProcess = function(cb){
             }),
             success:function(data){
                 User = JSON.parse(ungzip(data));
-                console.log(User);
                 if(User.Flag != 100){
                     alert("登录错误");
                     return ;
@@ -348,7 +327,6 @@ var getMyProfile = function(){
             var postData = ungzip(data),
                 content = JSON.parse(postData).Content;
                 content = JSON.parse(content);
-            console.log(content);
             var profile = {
                 Score:content.Skill.Score,
                 UserID:content.UserID,
@@ -363,12 +341,13 @@ var getMyProfile = function(){
                 CountOfCompletedProjects:content.CountOfCompletedProjects,
                 profile:wrapProfile(content)
             };
+
             var $container = $('#my-profile');
             var pp = new projectProfile(profile);
             $container.html(pp.render());
             pp.getUserHead(function(err,url){
                 if(err){wsalert(err);}
-                $container.find('[data-profile-img]').attr('src',url);
+                $container.find('[data-profile-img]').attr('src',url||"./img/profile-head.png");
             })
         }
     });
@@ -376,19 +355,22 @@ var getMyProfile = function(){
 
 var wrapProfile = function(c){
     var pf = {};
-    
-    if(!c.Sex || !c.Account ){
+
+    if(!c.Account ){
         return undefined;    
     }
 
-    pf.Sex = c.Sex,
+    pf.Sex = c.Sex||'未填写',
     pf.Account = c.Account,
-    pf.FirstName = c.FirstName,
-    pf.LastName = c.LastName;
+    pf.FirstName = c.FirstName||'未填写',
+    pf.LastName = c.LastName||'未填写';
+    contact = c.Contact;
+    if(typeof c.Contact != 'object')
+    contact = JSON.parse(c.Contact);
+    
+    pf.Email = contact.Email||'未填写',
+    pf.ContactList = contact.ContactList||[];
 
-    var contact = JSON.parse(c.Contact);
-    pf.Email = contact.Email,
-    pf.ContactList = contact.ContactList;
     return pf;
 }
 

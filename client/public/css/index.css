@@ -215,3 +215,4 @@ div[data-role="page"] >header{position: absolute;top: 0;}
 /*个人资料*/
 #my-profile-page >div{margin: 0;}
 #my-profile-page .person-profile{box-shadow: none;}
+#my-profile-page .profile-p-info-project{display: none;}
