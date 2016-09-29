@@ -35,8 +35,9 @@ exports.projectExplorer = function(req,res,next){
 
 exports.projectApply = function(req,res,next){
     var postData = req.body;
-    var query = "http://site/Uniwork/web/app.php/CommonAction/651C3B7D-518E-5964-B1A0-0DED3353C2B6/1/CommonAdd";
+    var query = "http://58.246.1.146:59800/Uniwork/web/app.php/CommonAction/651C3B7D-518E-5964-B1A0-0DED3353C2B6/1/CommonAdd";
     request.post(query,function(err,req,body){
+        if(err){console.log(err);}
         res.json(body);
     })
     .form(JSON.stringify(postData));
