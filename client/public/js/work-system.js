@@ -165,12 +165,19 @@
 _add(WSS,function(){	
 	WSS.fn.init = function(){
 		//初始化轮播大小
+		var self = this;
 		var width = window.innerWidth;;
 		this.width = width;
 		
 		var $lis = this.$container.find('.work-slider-item');
 		$lis.css('width',width);
 		this.$lis = $lis;
+		$(window).resize(function(event) {
+			var width = window.innerWidth;;
+			$lis.css('width',width);
+			self.width = width;
+			self.render();
+		});
 
 		var $ul = this.$container.find('.work-slider-list');
 		this.$ul = $ul;
@@ -194,7 +201,6 @@ _add(WSS,function(){
 		var move =-(this.position * this.width);
 		this.$ul.css('transform','translateX('+move+'px)');
 	}
-
 });
 
 _add(SI,function(){
@@ -1130,7 +1136,7 @@ _add(PPP,function(){
 			if(err){alert(err);return;}
 			for(var i = 0;i < data.length;i++)
 				if(data[i].UWSProjectID == UWSProjectID && data[i].Status == 1){
-					return cb(false)		
+					return cb(false,ai)		
 				}
 			cb(true);
 		})
@@ -1154,11 +1160,10 @@ _add(PPP,function(){
 			var ApplyItem = option.ApplyList[i];
 			//塞入index
 			ApplyItem.index = i;
-			this.judge(ApplyItem,function(judge){
+			this.judge(ApplyItem,function(judge,ai){
 				if(judge == false){
-					var pp = new PP(ApplyItem);
-					html+=pp.render();
-					ep.emit('pp_render',html);
+					var pp = new PP(ai);
+					ep.emit('pp_render',pp.render());
 					pp.renderUser(function(data){
 						var $profile = $container.find('[data-profile-userid-'+data.UserID+']');
 						var $name = $profile.find('[data-profile-name]'),
