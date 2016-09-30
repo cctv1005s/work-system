@@ -390,3 +390,6 @@ $('.logout-btn').click(function(event) {
     });
 });
 
+$('#savecheck-btn').click(function(event) {
+    $('#savecheck').click();
+});

@@ -9,6 +9,7 @@ li{list-style: none !important;}
 .greyback{background-color:#a0a0a0;}
 
 #login-page{z-index: 1000;}
+#savecheck-btn{cursor: pointer;}
 /*jquery 的loading 文字去掉*/
 .ui-loader-default{ display:none}
 .ui-mobile-viewport{ border:none;}
