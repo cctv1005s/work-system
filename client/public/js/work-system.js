@@ -896,6 +896,7 @@ _add(PP,function(){
 
 
 	PP.fn.render = function(){
+		console.log(this.option);
 		var option = this.option,
 			score = option.Score,
 			UserID = option.UserID,
@@ -973,35 +974,7 @@ _add(PP,function(){
                       '</div>'+
                     '</div>'+                        
                     '<!--项目-->'+
-                    '<div class="profile-info-item clearfix profile-p-info-project">'+
-                      '<div class="profile-title">'+'项目'+'</div>'+
-                        
-                        '<div class="profile-p clearfix">'+
-                          '<div class="profile-p-img left">'+
-                            '<img src="./img/project_1.gif">'+
-                          '</div>'+
-                          
-                          '<div class="profile-p-info right ">'+
-                            '<div class="profile-p-info-b greyword left">'+
-                              '<div class="profile-p-item">'+'项目名称：'+'</div>'+
-                              '<div class="profile-p-item">'+'项目所需技能：'+'</div>'+
-                              '<div class="profile-p-item">'+'项目经理评价：'+'</div>'+
-                            '</div>'+
-                            '<div class="profile-p-info-a right">'+
-                              '<div class="profile-p-item">'+'南非草地狩猎'+'</div>'+
-                              '<div class="profile-p-item">'+'翻译-文档-文案'+'</div>'+
-                              '<div class="profile-p-item">'+
-                                '<i class="am-header-icon am-icon-star  blueword">'+'</i>'+
-                                '<i class="am-header-icon am-icon-star  blueword">'+'</i>'+
-                                '<i class="am-header-icon am-icon-star  blueword">'+'</i>'+
-                                '<i class="am-header-icon am-icon-star  blueword">'+'</i>'+
-                                '<i class="am-header-icon am-icon-star-o  ">'+'</i>'+
-                              '</div>'+
-                            '</div>'+
-                          '</div>'+
-                        '</div>'+
-                    
-                    '</div>'+
+                    	getProject()+              
                   '</div>'+
                 '</div>'+
               '</li>'
@@ -1058,6 +1031,38 @@ _add(PP,function(){
         return html;
 	}
 
+	var getProject = function(){
+		var html = '<div class="profile-info-item clearfix profile-p-info-project">'+
+                      '<div class="profile-title">'+'项目'+'</div>'+
+                        
+                        // '<div class="profile-p clearfix">'+
+                        //   '<div class="profile-p-img left">'+
+                        //     '<img src="./img/project_1.gif">'+
+                        //   '</div>'+
+                          
+                        //   '<div class="profile-p-info right ">'+
+                        //     '<div class="profile-p-info-b greyword left">'+
+                        //       '<div class="profile-p-item">'+'项目名称：'+'</div>'+
+                        //       '<div class="profile-p-item">'+'项目所需技能：'+'</div>'+
+                        //       '<div class="profile-p-item">'+'项目经理评价：'+'</div>'+
+                        //     '</div>'+
+                        //     '<div class="profile-p-info-a right">'+
+                        //       '<div class="profile-p-item">'+'南非草地狩猎'+'</div>'+
+                        //       '<div class="profile-p-item">'+'翻译-文档-文案'+'</div>'+
+                        //       '<div class="profile-p-item">'+
+                        //         '<i class="am-header-icon am-icon-star  blueword">'+'</i>'+
+                        //         '<i class="am-header-icon am-icon-star  blueword">'+'</i>'+
+                        //         '<i class="am-header-icon am-icon-star  blueword">'+'</i>'+
+                        //         '<i class="am-header-icon am-icon-star  blueword">'+'</i>'+
+                        //         '<i class="am-header-icon am-icon-star-o  ">'+'</i>'+
+                        //       '</div>'+
+                        //     '</div>'+
+                        //   '</div>'+
+                        // '</div>'+                    
+                    '</div>';
+		return html;
+	}
+ 
 });
 
 _add(PPP,function(){
