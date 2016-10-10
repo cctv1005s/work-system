@@ -666,43 +666,44 @@ _add(PE,function(){
 		var status = pi.Status;
 		var $container = this.$container;
 
+		console.log(pi);
+
 		//如果不是自己的项目，那么就提交申请。
 		var data = {
 			"UWSProjectID":pi.id,
 			"Title":pi.Title,
 			"Size":pi.Size,
 			"Type":pi.Type,
-			"Price":pi.SupplierAward,
+			"Price":pi.PriceList.SupplierAward,
 			"CreateTime":"2016-9-27 14:45:43",
 			"DeliveryTime":pi.DeliveryTime,
 			"Status":1,
 			"CountOfPerson":pi.CountOfPerson,
 			"TokenID":TokenID
 		}
-
-
-			//提交申请
-			$.ajax({
-				url:'/projectApply',
-				type:'post',
-				contentType: "application/json; charset=utf-8",   //内容类型
-				data:JSON.stringify(data),
-				success:function(data){
-					var postData = ungzip(data);
-					postData = JSON.parse(postData);
-					if(	flagProcess(postData) ){
-						wsalert('申请成功');
-					}
-					else{
-						return ;
-					}
-
-					var content = JSON.parse(postData.Content);
-					var itemContent = JSON.parse(content.ItemContent);
-					pi = itemContent;
-					$container.find('[data-project-btn-apply]').hide();
+		//提交申请
+		$.ajax({
+			url:'/projectApply',
+			type:'post',
+			contentType: "application/json; charset=utf-8",   //内容类型
+			data:JSON.stringify(data),
+			success:function(data){
+				var postData = ungzip(data);
+				postData = JSON.parse(postData);
+				console.log(postData);
+				if(	flagProcess(postData) ){
+					wsalert('申请成功');
 				}
-			});
+				else{
+					return ;
+				}
+
+				var content = JSON.parse(postData.Content);
+				var itemContent = JSON.parse(content.ItemContent);
+				pi = itemContent;
+				$container.find('[data-project-btn-apply]').hide();
+			}
+		});
 
 	}
 

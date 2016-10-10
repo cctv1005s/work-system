@@ -5,6 +5,7 @@ var route = require('./routes'),
     source = route.source,
     project = route.project;
     user = route.user;
+
 var userRequired = function(req,res,next){
     if(!req.session.user)
         res.json('请先登录');

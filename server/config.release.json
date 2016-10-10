@@ -1,0 +1,11 @@
+{
+    "webName":"工作系统",
+    "odata":{
+        "host":"",
+        "port":""
+    },
+    "api":{
+        "host":"",
+        "port":""
+    }
+}

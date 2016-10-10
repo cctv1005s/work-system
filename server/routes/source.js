@@ -1,6 +1,10 @@
 var request = require('request');
 var config = require('../config');
 var util = require('util');
+var config = require('../config');
+var tool = require('./tool');
+var api = require('../api');
+config = tool.formatConfig(config,api);
 
 exports.source = function(req,res,next){        
     var data = req.body;
@@ -16,11 +20,10 @@ exports.source = function(req,res,next){
     });
 }
 
-
 /*文件操作*/
 exports.sourceUpdate = function(req,res,next){
     var data = req.body;
-    var url = 'http://58.246.1.146:59800/Uniwork/web/app.php/CommonAction/4B474742-170A-4D37-83F5-8DE94524444A/0/CommonUpdate';
+    var url = config["SourceCommonUpdate"];
     //直接返回
     request.post(url,function(err,data,body){
         if(err){
@@ -34,7 +37,7 @@ exports.sourceUpdate = function(req,res,next){
 
 exports.sourceDelete = function(req,res,next){
     var data = req.body;
-    var url = 'http://58.246.1.146:59800/Uniwork/web/app.php/CommonAction/4B474742-170A-4D37-83F5-8DE94524444A/0/CommonDelete';
+    var url = config["SourceCommonDelete"];
     //直接返回
     request.post(url,function(err,data,body){
         if(err){
@@ -48,7 +51,7 @@ exports.sourceDelete = function(req,res,next){
 
 exports.download = function(req,res,next){
     var data = req.body;
-    var url = "http://58.246.1.146:59800/Uniwork/web/app.php/Action/FileSync/Download";
+    var url = config["SourceDownload"];
     request.post(url,function(err,data,body){
         if(err){
             return console.log(err);

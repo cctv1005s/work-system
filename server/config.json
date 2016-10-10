@@ -1,8 +1,11 @@
 {
-    "UWSProject":"http://58.246.1.146:59806/UWSProject",
-    "UWSExploer":"http://58.246.1.146:59806/UWSExplorer",
-    "UWSExplorerCollect":"http://58.246.1.146:59806/UWSExplorerCollect",
-    "UWSProjectExplorer":"http://58.246.1.146:59806/UWSProjectExplorer",
-    "UWSProjectRelate":"http://58.246.1.146:59806/UWSProjectRelate",
-    "UpdateProject":"http://58.246.1.146:59800/Uniwork/web/app.php/CommonAction/651C3B7D-518E-5964-B1A0-0DED3353C2B6/0/CommonUpdate"
+    "webName":"工作系统",
+    "odata":{
+        "host":"http://58.246.1.146",
+        "port":"59806"
+    },
+    "api":{
+        "host":"http://58.246.1.146",
+        "port":"59800"
+    }
 }

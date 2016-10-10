@@ -1,10 +1,16 @@
 var request = require('request');
+var config = require('../config');
+var tool = require('./tool');
+var api = require('../api');
+config = tool.formatConfig(config,api);
+
+console.log(config);
 
 exports.postLogin = function(req,res,next){
     /*给每一个用户分配一个自己的jar*/
     try{
     var data = req.body;
-    request.post('http://58.246.1.146:59800/Uniwork/web/app.php/Action/Account/Authen',function(err,data,body){
+    request.post(config["Authen"],function(err,data,body){
         if(err){
             console.log(err);
         }

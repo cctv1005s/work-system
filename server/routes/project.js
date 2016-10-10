@@ -1,6 +1,11 @@
 var request = require('request');
-var config = require('../config');
+var api = require('../api');
 var util = require('util');
+
+var config = require('../config');
+var tool = require('./tool');
+
+config = tool.formatConfig(config,api);
 
 
 exports.project = function(req,res,next){
@@ -35,7 +40,7 @@ exports.projectExplorer = function(req,res,next){
 
 exports.projectApply = function(req,res,next){
     var postData = req.body;
-    var query = "http://58.246.1.146:59800/Uniwork/web/app.php/CommonAction/651C3B7D-518E-5964-B1A0-0DED3353C2B6/1/CommonAdd";
+    var query = config["ProjectCommonAdd"];
     request.post(query,function(err,req,body){
         if(err){console.log(err);}
         res.json(body);
@@ -45,8 +50,7 @@ exports.projectApply = function(req,res,next){
 
 exports.projectPick = function(req,res,next){
     var postData = req.body;
-    var query = "http://58.246.1.146:59800/Uniwork/web/app.php/CommonAction/651C3B7D-518E-5964-B1A0-0DED3353C2B6/0/CommonUpdate";
-    console.log(postData);
+    var query = config["ProjectCommonUpdate"];
     request.post(query,function(err,req,body){
         res.json(body);
     })
